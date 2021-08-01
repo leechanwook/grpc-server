@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "OcppSocketProto";
+option java_package = "com.cu.server.csms.ocpp.grpc.socket";
+
+package com.cu.server.csms.ocpp.grpc.socket;
+
+message OcppSocketRequest { string chargingStationId = 2; string message = 3; }
+
+message OcppSocketResponse { string chargingStationId = 1; string message = 2; }
+
+service OcppSocketService {
+    rpc sendMessage (OcppSocketRequest) returns (OcppSocketResponse) {}
+}
+

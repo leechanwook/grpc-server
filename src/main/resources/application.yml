@@ -5,3 +5,6 @@ server:
 logging:
   level:
     'com.cu.test' : DEBUG
+
+app:
+  id: csms_service

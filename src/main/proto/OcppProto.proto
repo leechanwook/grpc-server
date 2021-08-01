@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_outer_classname = "OcppProto";
+option java_package = "com.cu.server.csms.ocpp.grpc.service";
+
+package com.cu.server.csms.ocpp.grpc.service;
+
+message OcppRequest { string ocppVersion = 1; string chargingStationId = 2; string message = 3; }
+message OcppResponse { string chargingStationId = 1; string message = 2; }
+
+message ChargingStationRequest { string chargingStationId = 1;}
+message ChargingStationResponse { string chargingStationId = 1;}
+
+message AuthenticationRequest { string chargingStationId = 1; string authId = 2;}
+message AuthenticationResponse { string chargingStationId = 1; string authId = 2; string authPasswd = 3;}
+
+service OcppService {
+    rpc sendMessage (OcppRequest) returns (OcppResponse) {}
+    rpc getChargingStationItem (ChargingStationRequest) returns (ChargingStationResponse) {}
+    rpc getAuthenticationItem (AuthenticationRequest) returns (AuthenticationResponse) {}
+
+    rpc updateLastHeartBeat (ChargingStationRequest) returns (ChargingStationResponse) {}
+    rpc onOpen (ChargingStationRequest) returns (ChargingStationResponse) {}
+    rpc onClose (ChargingStationRequest) returns (ChargingStationResponse) {}
+}
+
